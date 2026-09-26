@@ -1,4 +1,4 @@
-package org.maleshko;
+package org.maleshko.task1;
 
 import java.math.BigDecimal;
 

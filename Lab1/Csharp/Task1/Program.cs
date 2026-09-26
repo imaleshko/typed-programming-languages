@@ -4,15 +4,11 @@ public class Program
 {
     public static void Main()
     {
-        Console.WriteLine("Введіть суму:");
-        var amount = decimal.Parse(Console.ReadLine() ?? "0");
+        const string transactionId = "1234";
+        const decimal amount = 1000m;
+        const string currency = "USD";
 
-        Console.WriteLine("Введіть валюту:");
-        var currency = Console.ReadLine() ?? "EUR";
-
-        var transactionId = Guid.NewGuid();
-
-        var request = new InternalOrderDto(transactionId.ToString(), amount, currency);
+        var request = new InternalOrderDto(transactionId, amount, currency);
 
         // PaymentProcessor.Process(request); // Помилка
         PaymentProcessor.Process(From(request));

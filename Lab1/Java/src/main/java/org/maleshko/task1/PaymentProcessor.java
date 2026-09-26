@@ -1,4 +1,4 @@
-package org.maleshko;
+package org.maleshko.task1;
 
 public class PaymentProcessor {
     public static void process(PaymentRequest request) {
