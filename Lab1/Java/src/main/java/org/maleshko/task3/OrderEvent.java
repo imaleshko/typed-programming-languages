@@ -12,4 +12,7 @@ public sealed interface OrderEvent {
 
     record Cancelled(String orderId, String reason) implements OrderEvent {
     }
+
+    record Refunded(String orderId, String reason) implements OrderEvent {
+    }
 }
