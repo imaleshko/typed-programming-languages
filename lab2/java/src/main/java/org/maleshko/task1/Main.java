@@ -73,7 +73,7 @@ public class Main {
     }
 
     private static double boxing() {
-        List<Double> coordinates = new ArrayList<>(N * 3);
+        List<Object> coordinates = new ArrayList<>(N * 3);
 
         for (int i = 0; i < N * 3; i++) {
             coordinates.add(random.nextDouble());
@@ -81,9 +81,9 @@ public class Main {
 
         double sum = 0;
         for (int i = 0; i < N * 3; i += 3) {
-            double x = coordinates.get(i);
-            double y = coordinates.get(i + 1);
-            double z = coordinates.get(i + 2);
+            double x = (double) coordinates.get(i);
+            double y = (double) coordinates.get(i + 1);
+            double z = (double) coordinates.get(i + 2);
             sum += Math.sqrt(x * x + y * y + z * z);
         }
 
