@@ -50,7 +50,7 @@ public class FixedLeakService {
         }
         savedActions.add(delayed);
 
-        File tempFile = new File("temp.dat");
+        File tempFile = new File("temp.txt");
         try {
             tempFile.createNewFile();
         } catch (IOException ignored) {
