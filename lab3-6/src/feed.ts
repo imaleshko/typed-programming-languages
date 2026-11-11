@@ -1,22 +1,22 @@
 import type { Todo } from "./todo";
 
-interface Address {
+type Address = {
   city: string;
-}
+};
 
-interface Company {
+type Company = {
   name: string;
-}
+};
 
-interface User {
+export type User = {
   id: number;
   name: string;
   email: string;
   address: Address;
   company: Company;
-}
+};
 
-type Post = {
+export type Post = {
   userId: number;
   id: number;
   title: string;

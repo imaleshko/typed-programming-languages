@@ -1,18 +1,20 @@
 import type { Todo } from "./todo";
 
-type ParseResult = { ok: true; todos: Todo[] } | { ok: false; reason: string };
+export type ParseResult<T> =
+  { ok: true; value: T } | { ok: false; reason: string };
 
 const rawString = `[
   { "userId": 1, "id": 1, "title": "delectus aut autem", "completed": false },
   { "userId": 1, "id": 2, "title": "quis ut nam facilis et officia qui", "completed": false }
 ]`;
 
-const isTodo = (value: unknown): value is Todo => {
-  if (typeof value !== "object" || value === null) {
-    return false;
-  }
+export const isObject = (value: unknown): value is object => {
+  return typeof value === "object" && value !== null;
+};
 
+export const isTodo = (value: unknown): value is Todo => {
   return (
+    isObject(value) &&
     "userId" in value &&
     typeof value.userId === "number" &&
     "id" in value &&
@@ -38,7 +40,7 @@ const isTodoList = (value: unknown): value is Todo[] => {
   return true;
 };
 
-const parseTodos = (rawString: string): ParseResult => {
+const parseTodos = (rawString: string): ParseResult<Todo[]> => {
   let data: unknown;
   try {
     data = JSON.parse(rawString) as unknown;
@@ -50,10 +52,10 @@ const parseTodos = (rawString: string): ParseResult => {
     return { ok: false, reason: "не масив TODO" };
   }
 
-  return { ok: true, todos: data };
+  return { ok: true, value: data };
 };
 
-console.log(rawString);
-console.log(parseTodos(rawString));
-console.log(parseTodos('[{title: "лише заголовок"}]'));
-console.log(parseTodos('[{"title": "лише заголовок"}]'));
+// console.log(rawString);
+// console.log(parseTodos(rawString));
+// console.log(parseTodos('[{title: "лише заголовок"}]'));
+// console.log(parseTodos('[{"title": "лише заголовок"}]'));
