@@ -3,7 +3,7 @@ import type { Todo } from "./todo.js";
 
 import { isObject, isTodo, type ParseResult } from "./parse.js";
 
-type ApiFailure =
+export type ApiFailure =
   | { kind: "bad-id"; raw: string }
   | { kind: "network"; message: string }
   | { kind: "http"; status: number }
@@ -12,7 +12,7 @@ type ApiFailure =
 type ApiResult =
   { ok: true; value: unknown } | { ok: false; failure: ApiFailure };
 
-type UserBundle = { user: User; posts: Post[]; todos: Todo[] };
+export type UserBundle = { user: User; posts: Post[]; todos: Todo[] };
 
 type LoadResult =
   { ok: true; data: UserBundle } | { ok: false; failure: ApiFailure };
